@@ -29,6 +29,7 @@
     "hbs": "^4.0.1",
     "nodemon": "^1.12.5",
     "pbkdf2": "^3.0.14",
+    "pbkdf2-helpers": "^1.1.1",
     "pg-promise": "^7.3.2",
     "request": "^2.83.0"
   }
