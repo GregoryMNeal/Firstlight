@@ -6,19 +6,19 @@
     <b>Name</b>
     <br>
     <br>
-    <input type="text" name="name" placeholder="Enter name" value="{{name}}"><br><br>
+    <input type="text" name="name" placeholder="Enter name" value="{{name}}" required><br><br>
     <b>Email Address</b>
     <br>
     <br>
-    <input type="text" name="email" placeholder="Email address" value="{{email}}"><br><br>
+    <input type="text" name="email" placeholder="Email address" value="{{email}}" required><br><br>
     <b>Password</b>
     <br>
     <br>
-    <input type="password" name="password" placeholder="Enter Password"><br><br>
+    <input type="password" name="password" placeholder="Enter Password" required><br><br>
     <b>Re-type Password</b>
     <br>
     <br>
-    <input type="password" name="confirmpwd" placeholder="Enter Password"><br><br>
+    <input type="password" name="confirmpwd" placeholder="Enter Password" required><br><br>
     <input class="btn btn-full" type="submit" value="Create Account">
     {{#if errmsg}}
       <br><br>
