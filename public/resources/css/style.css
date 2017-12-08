@@ -1,4 +1,4 @@
-/* 
+/*
 
 Orange color: #e67e22;
 Blue color: #0d62ff;
@@ -264,9 +264,7 @@ header {
 /*----------------------------------------------------------------------------*/
 
 .section-meals {
-    height: 100vh;
     padding: 0;
-    background-color: #f4f4f4;
 }
 
 .meals-showcase {
@@ -306,7 +304,7 @@ header {
 }
 
 /*----------------------------------------------------------------------------*/
-/* HOW IT WORKS */
+/* ABOUT US */
 /*----------------------------------------------------------------------------*/
 
 .steps-box { margin-top: 30px; }
@@ -322,7 +320,7 @@ header {
     margin-top: 70px;
 }
 
-.app-screen { width: 40%; }
+.app-screen { width: 80%; }
 
 .works-step { margin-bottom: 50px; }
 
@@ -343,7 +341,7 @@ header {
 }
 
 .btn-app:link,
-.btn-app:visited { 
+.btn-app:visited {
     border: 0;
     float: right;
 }
