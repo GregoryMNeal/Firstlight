@@ -346,10 +346,9 @@ header {
     float: right;
 }
 
-.btn-app img {
-    height: 50px;
-    width: auto;
-    margin-right: 10px;
+.section-steps img {
+    display: block;
+    margin: 0 auto;
 }
 
 /*----------------------------------------------------------------------------*/
