@@ -1,0 +1,19 @@
+<form action="/create_acct" method="POST">
+  <b>Name</b>
+  <br>
+  <input type="text" name="name" placeholder="Enter name" value="{{name}}"><br><br>
+  <b>Email Address</b>
+  <br>
+  <input type="text" name="email" placeholder="Email address" value="{{email}}"><br><br>
+  <b>Password</b>
+  <br>
+  <input type="password" name="password" placeholder="Enter Password"><br><br>
+  <b>Re-type Password</b>
+  <br>
+  <input type="password" name="confirmpwd" placeholder="Enter Password"><br><br>
+  <button type="submit">Create Account</button>
+  {{#if errmsg}}
+    <br><br>
+    <b>{{errmsg}} Please try again.</b>
+  {{/if}}
+</form>

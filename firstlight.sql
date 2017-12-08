@@ -10,9 +10,11 @@ CREATE TABLE trainer (
 CREATE TABLE trainee (
 	id SERIAL NOT NULL PRIMARY KEY,
 	name VARCHAR,
+	email VARCHAR UNIQUE,
 	dob DATE,
 	weight_goal DECIMAL,
 	bmi_goal DECIMAL,
+	pword VARCHAR,
 	trainer_id INTEGER REFERENCES trainer (id)
 );
 
