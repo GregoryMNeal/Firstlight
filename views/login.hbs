@@ -1,40 +1,25 @@
 <section class="section-login">
   <div class="row">
-      <h2>Sign In</h2>
+      <h2>Sign in</h2>
   </div>
-  <div class="row">
-    <form action="/login" method="POST">
-      <div class="row">
-        <div class="col span-1-of-3">
-          <label for="username">Username</label>
-        </div>
-        <div class="col span-2-of-3">
-          <input type="text" name="username" id="username" placeholder="Enter Username" value="{{uname}}">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col span-1-of-3">
-          <label for="password">Password</label>
-        </div>
-        <div class="col span-2-of-3">
-          <input type="password" name="password" id="password" placeholder="Enter Password">
-        </div>
-      </div>
-      <div class="row">
-          <div class="col span-1-of-3">
-              <label>&nbsp;</label>
-          </div>
-          <div class="col span-2-of-3">
-              <input class="btn btn-full" type="submit" value="Sign in">
-          </div>
-      </div>
-    </form>
-    <form action="/create_acct" method="GET">
-      <button type="submit">Create Account</button>
-    </form>
-  </div>
-<section>
-{{#if errmsg}}
-  <br>
-  <b>{{errmsg}} Please try again.</b>
-{{/if}}
+  <form action="/login" method="POST">
+    <b>Username</b>
+    <br>
+    <br>
+    <input type="text" name="username" placeholder="Email address" value="{{uname}}"><br><br>
+    <b>Password</b>
+    <br>
+    <br>
+    <input type="password" name="password" placeholder="Enter Password"><br><br>
+    <input class="btn btn-login" type="submit" value="Log in">
+    <br>
+    <br>
+  </form>
+  <form action="/create_acct" method="GET">
+    <input class="btn btn-full" type="submit" value="Create Account">
+  </form>
+  {{#if errmsg}}
+    <br>
+    <b>{{errmsg}} Please try again.</b>
+  {{/if}}
+</section>
