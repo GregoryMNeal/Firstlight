@@ -118,7 +118,7 @@ app.post('/create_acct', function (req, resp, next) {
       password: encrypted_pwd
     };
     var q = 'INSERT INTO trainee \
-      VALUES (default, ${name}, ${email}, NULL, ${password}) RETURNING id';
+      VALUES (default, ${name}, ${email}, NULL, NULL, NULL, ${password}) RETURNING id';
     db.one(q, trainee_info)
       .then(function (result) {
         req.session.user = form_email; // set up a user session
