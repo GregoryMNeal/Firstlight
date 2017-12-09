@@ -36,6 +36,7 @@ app.get('/', function (req, resp, next) {
 
 // get method for login
 app.get('/login', function (req, resp, next) {
+  req.session.destination = '/mlog'; // route to log history after login
   var context = {title: 'Sign in',
     uname: '',
     errmsg: ''
@@ -65,7 +66,7 @@ app.post('/login', function (req, resp, next) {
         req.session.user = username; // set up a user session
         req.session.login_name = result.name;
         req.session.trainee_id = result.id;
-        resp.redirect(req.session.destination);
+        resp.redirect('/history');
       } else {
         var context = {title: 'Sign in',
           uname: username,
@@ -124,11 +125,34 @@ app.post('/create_acct', function (req, resp, next) {
         req.session.user = form_email; // set up a user session
         req.session.login_name = form_name;
         req.session.trainee_id = result.id;
-        // redirect to home page
-        resp.redirect('/');
+        // redirect to history page
+        resp.redirect('/history');
       })
       .catch(next);
   }
+});
+
+// Display history for a trainee
+app.get('/history/:id', function (req, resp, next) {
+  var id = req.params.id;
+  var q = 'SELECT trainee.id as id, trainee.name FROM trainee \
+  LEFT JOIN measurements ON trainee.id = measurements.trainee_id \
+  WHERE trainee.id = $1';
+  db.any(q, id)
+    .then(function (results) {
+      resp.render('history.hbs', {
+        title: 'History',
+        results: results,
+        login_name: req.session.login_name});
+    })
+    .catch(next);
+});
+
+// get method for signout
+app.post('/signout', function (req, resp, next) {
+  req.session.destroy(function (err) {
+  });
+  resp.redirect('/');
 });
 
 // Listen for requests

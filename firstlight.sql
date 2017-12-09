@@ -4,7 +4,8 @@ CREATE TABLE trainer (
 	id SERIAL NOT NULL PRIMARY KEY,
 	trainer_name VARCHAR,
 	certifications VARCHAR,
-	active BOOLEAN DEFAULT true
+	active BOOLEAN DEFAULT true,
+	pword VARCHAR
 );
 
 CREATE TABLE trainee (
