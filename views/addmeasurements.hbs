@@ -1,0 +1,26 @@
+{{#if login_name}}
+  <form action="/signout" method="POST">
+    <div>
+      Hi {{login_name}}!
+      <button type="submit" value="submit">Sign out</button>
+    </div>
+  </form>
+{{/if}}
+<form action="/addmeasurements" method="POST">
+  <input type="hidden" name="id" value="{{id}}">
+  <b>Title:</b>
+  <br>
+  <input type="text" name="review_title" placeholder="Title"><br><br>
+  <b>Write a review:</b>
+  <br>
+  <textarea type="text" name="review_text" rows="8" cols="100"></textarea><br><br>
+  <b>Stars:</b>
+  <br>
+  <input type="radio" name="review_stars" value="1"> One<br>
+  <input type="radio" name="review_stars" value="2"> Two<br>
+  <input type="radio" name="review_stars" value="3"> Three<br>
+  <input type="radio" name="review_stars" value="4"> Four<br>
+  <input type="radio" name="review_stars" value="5"> Five<br>
+  <br>
+  <button type="submit">Submit</button>
+</form>

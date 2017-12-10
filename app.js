@@ -25,6 +25,19 @@ app.use(session({
   cookie: {maxAge: 60000}
 }));
 
+// Check to see if user needs to be logged in
+app.use(function (req, resp, next) {
+  console.log(req.path);
+  if (req.session.user) {  // user is already logged in
+    next();
+  } else if (req.path != '/' && req.path != '/login') { // require login
+      req.session.destination = req.originalUrl; // save intended destination
+      resp.redirect('/login');
+  } else {
+      next(); // login not required
+  }
+});
+
 // get method for root URL:/
 app.get('/', function (req, resp, next) {
   var context = {
@@ -66,7 +79,7 @@ app.post('/login', function (req, resp, next) {
         req.session.user = username; // set up a user session
         req.session.login_name = result.name;
         req.session.trainee_id = result.id;
-        resp.redirect('/history/' + result.id);
+        resp.redirect('/listmeasurements/' + result.id);
       } else {
         var context = {title: 'Sign in',
           uname: username,
@@ -128,26 +141,36 @@ app.post('/create_acct', function (req, resp, next) {
         req.session.login_name = form_name;
         req.session.trainee_id = result.id;
         // redirect to history page
-        resp.redirect('/history/' + result.id);
+        resp.redirect('/listmeasurements/' + result.id);
       })
       .catch(next);
   }
 });
 
 // Display history for a trainee
-app.get('/history/:id', function (req, resp, next) {
+app.get('/listmeasurements/:id', function (req, resp, next) {
   var id = req.params.id;
   var q = 'SELECT trainee.id as id, trainee.name FROM trainee \
   LEFT JOIN measurements ON trainee.id = measurements.trainee_id \
   WHERE trainee.id = $1';
   db.any(q, id)
     .then(function (results) {
-      resp.render('history.hbs', {
+      resp.render('listmeasurements.hbs', {
         title: 'History',
         results: results,
         login_name: req.session.login_name});
     })
     .catch(next);
+});
+
+// get method for adding a review
+app.get('/addmeasurements', function (req, resp, next) {
+  var id = req.query.id;
+  var context = {
+    title: 'Add Measurements',
+    id: id,
+    login_name: req.session.login_name};
+  resp.render('addmeasurements.hbs', context);
 });
 
 // get method for signout

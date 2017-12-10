@@ -1,7 +1,4 @@
-<section class="section-history">
-  <div class="row">
-      <h2>Measurement History</h2>
-  </div>
+<section class="section-list-measurements">
   {{#if login_name}}
     <form action="/signout" method="POST">
       <div>
@@ -10,7 +7,10 @@
       </div>
     </form>
   {{/if}}
-  <form action="/add_measurements" method="GET">
+  <form action="/addmeasurements" method="GET">
+    <div class="row">
+        <h2>Measurement History</h2>
+    </div>
     <input type="hidden" name="id" value={{results.[0].id}}>
     <p>Name: {{results.[0].name}}</p>
     <button type="submit">Add Measurements</button>
