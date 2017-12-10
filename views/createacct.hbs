@@ -3,22 +3,22 @@
     <div class="row">
         <h2>Create Account</h2>
     </div>
-    <b>Name</b>
+    <label for="name"><b>Name</b></label>
     <br>
     <br>
-    <input type="text" name="name" placeholder="Enter name" value="{{name}}" required><br><br>
-    <b>Email Address</b>
+    <input type="text" name="name" id="name" placeholder="Enter name" value="{{name}}" required><br><br>
+    <label for="email"><b>Email Address</b></label>
     <br>
     <br>
-    <input type="text" name="email" placeholder="Email address" value="{{email}}" required><br><br>
-    <b>Password</b>
+    <input type="text" name="email" id="email" placeholder="Enter Email address" value="{{email}}" required><br><br>
+    <label for="password"><b>Password</b></label>
     <br>
     <br>
-    <input type="password" name="password" placeholder="Enter Password" required><br><br>
-    <b>Re-type Password</b>
+    <input type="password" name="password" id="password" placeholder="Enter Password" required><br><br>
+    <label for="confirmpwd"><b>Re-type Password</b></label>
     <br>
     <br>
-    <input type="password" name="confirmpwd" placeholder="Enter Password" required><br><br>
+    <input type="password" name="confirmpwd" id="confirmpwd" placeholder="Confirm Password" required><br><br>
     <input class="btn btn-full" type="submit" value="Create Account">
     {{#if errmsg}}
       <br><br>

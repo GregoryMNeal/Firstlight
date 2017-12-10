@@ -66,7 +66,7 @@ app.post('/login', function (req, resp, next) {
         req.session.user = username; // set up a user session
         req.session.login_name = result.name;
         req.session.trainee_id = result.id;
-        resp.redirect('/history');
+        resp.redirect('/history/' + result.id);
       } else {
         var context = {title: 'Sign in',
           uname: username,
@@ -113,20 +113,22 @@ app.post('/create_acct', function (req, resp, next) {
     var key = pbkdf2.pbkdf2Sync(pwd, salt, 36000, 256, 'sha256');
     var hash = key.toString('hex');
     var encrypted_pwd = `pbkdf2_sha256$36000$${salt}$${hash}`;
+    var trainer_id = 1;
     var trainee_info = {
       name: form_name,
       email: form_email,
-      password: encrypted_pwd
+      password: encrypted_pwd,
+      trainer: trainer_id
     };
     var q = 'INSERT INTO trainee \
-      VALUES (default, ${name}, ${email}, NULL, NULL, NULL, ${password}) RETURNING id';
+      VALUES (default, ${name}, ${email}, NULL, NULL, NULL, ${password}, ${trainer}) RETURNING id';
     db.one(q, trainee_info)
       .then(function (result) {
         req.session.user = form_email; // set up a user session
         req.session.login_name = form_name;
         req.session.trainee_id = result.id;
         // redirect to history page
-        resp.redirect('/history');
+        resp.redirect('/history/' + result.id);
       })
       .catch(next);
   }

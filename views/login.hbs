@@ -3,14 +3,14 @@
       <h2>Sign in</h2>
   </div>
   <form action="/login" method="POST">
-    <b>Username</b>
+    <label for="username"><b>Username</b></label>
     <br>
     <br>
-    <input type="text" name="username" placeholder="Email address" value="{{uname}}" required><br><br>
-    <b>Password</b>
+    <input type="text" name="username" id="username" placeholder="Email address" value="{{uname}}" required><br><br>
+    <label for="password"><b>Password</b></label>
     <br>
     <br>
-    <input type="password" name="password" placeholder="Enter Password" required><br><br>
+    <input type="password" name="password" id="password" placeholder="Enter Password" required><br><br>
     <input class="btn btn-login" type="submit" value="Log in">
     <br>
     <br>
