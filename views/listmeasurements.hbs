@@ -3,7 +3,7 @@
     <div class="row">
         <h2>Measurement History</h2>
     </div>
-    <input type="hidden" name="id" value={{results.[0].id}}>
+    <input type="hidden" name="id" value={{results.[0].trainee_id}}>
     <div class="row">
       <div class="col span-1-of-6">
           <label for="name">Name</label>
@@ -12,6 +12,11 @@
           {{results.[0].name}}
       </div>
     </div>
+    <br>
+    <br>
+    {{#each results}}
+        <li><a href="/chgmeasurements/{{id}}">{{measure_date}}</a></li>
+    {{/each}}
     <br>
     <br>
     <div class="row">

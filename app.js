@@ -137,9 +137,9 @@ app.post('/create_acct', function (req, resp, next) {
 // Display history for a trainee
 app.get('/listmeasurements/:id', function (req, resp, next) {
   var id = req.params.id;
-  var q = 'SELECT trainee.id as id, trainee.name FROM trainee \
-  LEFT JOIN measurements ON trainee.id = measurements.trainee_id \
-  WHERE trainee.id = $1';
+   var q = 'SELECT trainee.id as id, trainee.name, measurements.* FROM trainee \
+   LEFT JOIN measurements ON trainee.id = measurements.trainee_id \
+   WHERE trainee.id = $1';
   db.any(q, id)
     .then(function (results) {
       resp.render('listmeasurements.hbs', {
@@ -158,7 +158,6 @@ app.get('/addmeasurements', function (req, resp, next) {
   WHERE trainee.id = $1';
   db.any(q, id)
     .then(function (results) {
-      console.log(results);
       resp.render('addmeasurements.hbs', {
         title: 'Add Measurements',
         id: id,
@@ -207,6 +206,23 @@ app.post('/addmeasurements', function (req, resp, next) {
         resp.redirect('/listmeasurements/' + req.body.id);
       })
       .catch(next);
+});
+
+// get method for changing measurements for a trainee
+app.get('/chgmeasurements/:id', function (req, resp, next) {
+  var id = req.params.id;
+  var q = 'SELECT trainee.id as id, trainee.name, measurements.* FROM trainee \
+  LEFT JOIN measurements ON trainee.id = measurements.trainee_id \
+  WHERE measurements.id = $1';
+  db.any(q, id)
+    .then(function (results) {
+      resp.render('chgmeasurements.hbs', {
+        title: 'Change Measurements',
+        id: id,
+        results: results,
+        login_name: req.session.login_name});
+    })
+    .catch(next);
 });
 
 // get method for signout
