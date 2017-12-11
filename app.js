@@ -25,21 +25,6 @@ app.use(session({
   cookie: {maxAge: 60000}
 }));
 
-// Check to see if user needs to be logged in
-app.use(function (req, resp, next) {
-  console.log(req.path);
-  if (req.session.user) {  // user is already logged in
-    next();
-  } else if (req.path != '/' // not the home page
-          && req.path != '/login' // not the login screen
-          && req.path != '/create_acct') { // not the create account page
-      req.session.destination = req.originalUrl; // save intended destination
-      resp.redirect('/login'); // re-route to the login page
-  } else {
-      next(); // login not required
-  }
-});
-
 // get method for root URL:/
 app.get('/', function (req, resp, next) {
   var context = {
@@ -165,14 +150,63 @@ app.get('/listmeasurements/:id', function (req, resp, next) {
     .catch(next);
 });
 
-// get method for adding a review
+// get method for adding measurements for a trainee
 app.get('/addmeasurements', function (req, resp, next) {
   var id = req.query.id;
-  var context = {
-    title: 'Add Measurements',
-    id: id,
-    login_name: req.session.login_name};
-  resp.render('addmeasurements.hbs', context);
+  var q = 'SELECT trainee.id as id, trainee.name FROM trainee \
+  LEFT JOIN measurements ON trainee.id = measurements.trainee_id \
+  WHERE trainee.id = $1';
+  db.any(q, id)
+    .then(function (results) {
+      console.log(results);
+      resp.render('addmeasurements.hbs', {
+        title: 'Add Measurements',
+        id: id,
+        results: results,
+        login_name: req.session.login_name});
+    })
+    .catch(next);
+});
+
+// post method for adding measurements
+app.post('/addmeasurements', function (req, resp, next) {
+  // Get input from form
+  var measurement_data = {
+    measure_date: req.body.date,
+    height_ft: req.body.feet,
+    height_in: req.body.inches,
+    weight: req.body.currweight,
+    caliper_chest: req.body.calchest,
+    caliper_subscap: req.body.calsubscap,
+    caliper_abd: req.body.calabdomen,
+    caliper_suprillac: req.body.calsuprillac,
+    caliper_thigh: req.body.calthigh,
+    caliper_lowback: req.body.callowerback,
+    caliper_bicep: req.body.calbicep,
+    caliper_calf: req.body.calcalf,
+    caliper_tricep: req.body.caltricep,
+    girth_shoulders: req.body.girthshoulders,
+    girth_chest: req.body.girthchest,
+    girth_waist: req.body.girthwaist,
+    girth_hips: req.body.girthhips,
+    girth_thigh_l: req.body.girthlthigh,
+    girth_thigh_r: req.body.girthrthigh,
+    girth_calf_l: req.body.girthlcalf,
+    girth_calf_r: req.body.girthrcalf,
+    girth_bicep_l: req.body.girthlbicep,
+    girth_bicep_r: req.body.girthrbicep,
+    fat_lbs: req.body.fatlbs,
+    lean_mass: req.body.leanmass,
+    body_fat_pct: req.body.bodyfatpct,
+    trainee_id: req.body.id
+  };
+  var q = 'INSERT INTO measurements \
+    VALUES (default, ${measure_date}, ${height_ft}, ${height_in}, ${weight}, ${caliper_chest}, ${caliper_subscap}, ${caliper_abd}, ${caliper_suprillac}, ${caliper_thigh}, ${caliper_lowback}, ${caliper_bicep}, ${caliper_calf}, ${caliper_tricep}, ${girth_shoulders}, ${girth_chest}, ${girth_waist}, ${girth_hips}, ${girth_thigh_l}, ${girth_thigh_r}, ${girth_calf_l}, ${girth_calf_r}, ${girth_bicep_l}, ${girth_bicep_r}, ${fat_lbs}, ${lean_mass}, ${body_fat_pct}, ${trainee_id}) RETURNING id';
+    db.one(q, measurement_data)
+      .then(function (result) {
+        resp.redirect('/listmeasurements/' + req.body.id);
+      })
+      .catch(next);
 });
 
 // get method for signout

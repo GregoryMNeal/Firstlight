@@ -473,9 +473,9 @@ input[type=date],
 input[type=password],
 select,
 textarea {
-    height: 40px;
+    height: 30px;
     width: 100%;
-    padding: 7px;
+    padding: 3px;
     border-radius: 3px;
     border: 1px solid #ccc;
 }
