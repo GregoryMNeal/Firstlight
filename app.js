@@ -30,9 +30,11 @@ app.use(function (req, resp, next) {
   console.log(req.path);
   if (req.session.user) {  // user is already logged in
     next();
-  } else if (req.path != '/' && req.path != '/login') { // require login
+  } else if (req.path != '/' // not the home page
+          && req.path != '/login' // not the login screen
+          && req.path != '/create_acct') { // not the create account page
       req.session.destination = req.originalUrl; // save intended destination
-      resp.redirect('/login');
+      resp.redirect('/login'); // re-route to the login page
   } else {
       next(); // login not required
   }

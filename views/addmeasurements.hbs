@@ -1,26 +1,239 @@
-{{#if login_name}}
-  <form action="/signout" method="POST">
-    <div>
-      Hi {{login_name}}!
-      <button type="submit" value="submit">Sign out</button>
-    </div>
-  </form>
-{{/if}}
-<form action="/addmeasurements" method="POST">
-  <input type="hidden" name="id" value="{{id}}">
-  <b>Title:</b>
-  <br>
-  <input type="text" name="review_title" placeholder="Title"><br><br>
-  <b>Write a review:</b>
-  <br>
-  <textarea type="text" name="review_text" rows="8" cols="100"></textarea><br><br>
-  <b>Stars:</b>
-  <br>
-  <input type="radio" name="review_stars" value="1"> One<br>
-  <input type="radio" name="review_stars" value="2"> Two<br>
-  <input type="radio" name="review_stars" value="3"> Three<br>
-  <input type="radio" name="review_stars" value="4"> Four<br>
-  <input type="radio" name="review_stars" value="5"> Five<br>
-  <br>
-  <button type="submit">Submit</button>
-</form>
+<section class="section-form">
+  <div class="row">
+      <h2>Add Measurement Data</h2>
+  </div>
+  <div class="row">
+      <form method="post" action="#">
+          <div class="row">
+              <div class="col span-1-of-6">
+                  <label for="name">Name</label>
+              </div>
+              <div class="col span-1-of-6">
+                  <input type="text" name="name" id="name">
+              </div>
+              <div class="col span-1-of-6">
+                  <label for="date">Date</label>
+              </div>
+              <div class="col span-1-of-6">
+                  <input type="date" name="date" id="date">
+              </div>
+              <div class="col span-1-of-6">
+                  <label for="age">Age</label>
+              </div>
+              <div class="col span-1-of-6">
+                  <input type="number" min="1" step="1" name="age" id="age">
+              </div>
+          </div>
+          <div class="row">
+              <div class="col span-1-of-6">
+                  <label for="name">Height</label>
+              </div>
+              <div class="col span-1-of-6">
+                  <input type="number" min="0" max="8" step="1" name="feet" id="feet">
+              </div>
+              <div class="col span-1-of-6">
+                  <label for="date">Ft.</label>
+              </div>
+              <div class="col span-1-of-6">
+                  <input type="number" min="0" max="12" step="1" name="inches" id="inches">
+              </div>
+              <div class="col span-1-of-6">
+                  <label for="age">in.</label>
+              </div>
+          </div>
+          <br>
+          <div class="row">
+              <h3>Weight</h3>
+          </div>
+          <div class="row">
+              <div class="col span-1-of-6">
+                  <label for="currweight">Current Weight</label>
+              </div>
+              <div class="col span-1-of-6">
+                  <input type="number" min="1" step=".1" name="currweight" id="currweight">
+              </div>
+              <div class="col span-1-of-6">
+                  <label for="date">Goal Weight</label>
+              </div>
+              <div class="col span-1-of-6">
+                  <input type="number" min="1" step=".1" name="goalweight" id="goalweight">
+              </div>
+              <div class="col span-1-of-6">
+                  <label for="age">Difference</label>
+              </div>
+              <div class="col span-1-of-6">
+                  <input type="number" min="1" step=".1" name="weightdiff" id="weightdiff">
+              </div>
+          </div>
+          <br>
+          <br>
+          <div class="row">
+              <h3>Caliper Measurements</h3>
+          </div>
+          <div class="row">
+              <div class="col span-1-of-6">
+                  <label for="calchest">Chest</label>
+              </div>
+              <div class="col span-1-of-6">
+                  <input type="number" min="1" step="1" name="calchest" id="calchest">
+              </div>
+              <div class="col span-1-of-6">
+                  <label for="calsuprillac">Suprillac</label>
+              </div>
+              <div class="col span-1-of-6">
+                  <input type="number" min="1" step="1" name="calsuprillac" id="calsuprillac">
+              </div>
+              <div class="col span-1-of-6">
+                  <label for="calbicep">Bicep</label>
+              </div>
+              <div class="col span-1-of-6">
+                  <input type="number" min="1" step="1" name="calbicep" id="calbicep">
+              </div>
+          </div>
+          <div class="row">
+              <div class="col span-1-of-6">
+                  <label for="calsubscap">Subscap</label>
+              </div>
+              <div class="col span-1-of-6">
+                  <input type="number" min="1" step="1" name="calsubscap" id="calsubscap">
+              </div>
+              <div class="col span-1-of-6">
+                  <label for="calthigh">Thigh</label>
+              </div>
+              <div class="col span-1-of-6">
+                  <input type="number" min="1" step="1" name="calthigh" id="calthigh">
+              </div>
+              <div class="col span-1-of-6">
+                  <label for="calcalf">Calf</label>
+              </div>
+              <div class="col span-1-of-6">
+                  <input type="number" min="1" step="1" name="calcalf" id="calcalf">
+              </div>
+          </div>
+          <div class="row">
+              <div class="col span-1-of-6">
+                  <label for="calabdomen">Abdomen</label>
+              </div>
+              <div class="col span-1-of-6">
+                  <input type="number" min="1" step="1" name="calabdomen" id="calabdomen">
+              </div>
+              <div class="col span-1-of-6">
+                  <label for="callowerback">Lower Back</label>
+              </div>
+              <div class="col span-1-of-6">
+                  <input type="number" min="1" step="1" name="callowerback" id="callowerback">
+              </div>
+              <div class="col span-1-of-6">
+                  <label for="caltricep">Tricep</label>
+              </div>
+              <div class="col span-1-of-6">
+                  <input type="number" min="1" step="1" name="caltricep" id="caltricep">
+              </div>
+          </div>
+          <br>
+          <br>
+          <div class="row">
+              <h3>Girth Measurements</h3>
+          </div>
+          <div class="row">
+              <div class="col span-1-of-6">
+                  <label for="girthshoulders">Shoulders</label>
+              </div>
+              <div class="col span-1-of-6">
+                  <input type="number" name="girthshoulders" id="girthshoulders">
+              </div>
+              <div class="col span-1-of-6">
+                  <label for="girthchest">Chest</label>
+              </div>
+              <div class="col span-1-of-6">
+                  <input type="number" name="girthchest" id="girthchest">
+              </div>
+          </div>
+          <div class="row">
+              <div class="col span-1-of-6">
+                  <label for="girthwaist">Waist</label>
+              </div>
+              <div class="col span-1-of-6">
+                  <input type="number" name="girthwaist" id="girthwaist">
+              </div>
+              <div class="col span-1-of-6">
+                  <label for="girthhips">Hips</label>
+              </div>
+              <div class="col span-1-of-6">
+                  <input type="number" name="girthhips" id="girthhips">
+              </div>
+          </div>
+          <div class="row">
+              <div class="col span-1-of-6">
+                  <label for="girthlbicep">Left Bicep</label>
+              </div>
+              <div class="col span-1-of-6">
+                  <input type="number" name="girthlbicep" id="girthlbicep">
+              </div>
+              <div class="col span-1-of-6">
+                  <label for="girthrbicep">Right Bicep</label>
+              </div>
+              <div class="col span-1-of-6">
+                  <input type="number" name="girthrbicep" id="girthrbicep">
+              </div>
+          </div>
+          <div class="row">
+              <div class="col span-1-of-6">
+                  <label for="girthlthigh">Left Thigh</label>
+              </div>
+              <div class="col span-1-of-6">
+                  <input type="number" name="girthlthigh" id="girthlthigh">
+              </div>
+              <div class="col span-1-of-6">
+                  <label for="girthrthigh">Right Thigh</label>
+              </div>
+              <div class="col span-1-of-6">
+                  <input type="number" name="girthrthigh" id="girthrthigh">
+              </div>
+          </div>
+          <div class="row">
+              <div class="col span-1-of-6">
+                  <label for="girthlcalf">Left Calf</label>
+              </div>
+              <div class="col span-1-of-6">
+                  <input type="number" name="girthlcalf" id="girthlcalf">
+              </div>
+              <div class="col span-1-of-6">
+                  <label for="girthrcalf">Right Calf</label>
+              </div>
+              <div class="col span-1-of-6">
+                  <input type="number" name="girthrcalf" id="girthrcalf">
+              </div>
+          </div>
+          <br>
+          <br>
+          <div class="row">
+              <h3>Lean Mass</h3>
+          </div>
+          <div class="row">
+              <div class="col span-1-of-6">
+                  <label for="bodyfatpct">Body Fat %</label>
+              </div>
+              <div class="col span-1-of-6">
+                  <input type="number" name="bodyfatpct" id="bodyfatpct">
+              </div>
+              <div class="col span-1-of-6">
+                  <label for="fatlbs">Fat Lbs</label>
+              </div>
+              <div class="col span-1-of-6">
+                  <input type="number" name="fatlbs" id="fatlbs">
+              </div>
+              <div class="col span-1-of-6">
+                  <label for="leanmass">Lean Mass</label>
+              </div>
+              <div class="col span-1-of-6">
+                  <input type="number" name="leanmass" id="leanmass">
+              </div>
+          </div>
+          <br>
+          <div class="row">
+              <input class="btn btn-full" type="submit" value="Submit">
+          </div>
+      </form>
+  </div>
+</section>

@@ -467,7 +467,9 @@ cite img {
 }
 
 input[type=text],
+input[type=number],
 input[type=email],
+input[type=date],
 input[type=password],
 select,
 textarea {
