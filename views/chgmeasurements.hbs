@@ -3,8 +3,9 @@
       <h2>Change Measurement Data</h2>
   </div>
   <div class="row">
-      <form action="/addmeasurements" method="POST">
+      <form action="/chgmeasurements" method="POST">
           <input type="hidden" name="id" value="{{id}}">
+          <input type="hidden" name="trainee_id" value="{{results.[0].trainee_id}}">
           <div class="row">
             <div class="col span-1-of-6">
                 <label for="name">Name</label>

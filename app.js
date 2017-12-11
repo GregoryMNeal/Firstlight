@@ -36,7 +36,6 @@ app.get('/', function (req, resp, next) {
 
 // get method for login
 app.get('/login', function (req, resp, next) {
-  req.session.destination = '/mlog'; // route to log history after login
   var context = {title: 'Sign in',
     uname: '',
     errmsg: ''
@@ -139,7 +138,7 @@ app.get('/listmeasurements/:id', function (req, resp, next) {
   var id = req.params.id;
    var q = 'SELECT trainee.id as id, trainee.name, measurements.* FROM trainee \
    LEFT JOIN measurements ON trainee.id = measurements.trainee_id \
-   WHERE trainee.id = $1';
+   WHERE trainee.id = $1 ORDER BY measure_date DESC';
   db.any(q, id)
     .then(function (results) {
       resp.render('listmeasurements.hbs', {
@@ -223,6 +222,47 @@ app.get('/chgmeasurements/:id', function (req, resp, next) {
         login_name: req.session.login_name});
     })
     .catch(next);
+});
+
+// post method for adding measurements
+app.post('/chgmeasurements', function (req, resp, next) {
+  // Get input from form
+  var measurement_data = {
+    id: req.params.id,
+    measure_date: req.body.date,
+    height_ft: req.body.feet,
+    height_in: req.body.inches,
+    weight: req.body.currweight,
+    caliper_chest: req.body.calchest,
+    caliper_subscap: req.body.calsubscap,
+    caliper_abd: req.body.calabdomen,
+    caliper_suprillac: req.body.calsuprillac,
+    caliper_thigh: req.body.calthigh,
+    caliper_lowback: req.body.callowerback,
+    caliper_bicep: req.body.calbicep,
+    caliper_calf: req.body.calcalf,
+    caliper_tricep: req.body.caltricep,
+    girth_shoulders: req.body.girthshoulders,
+    girth_chest: req.body.girthchest,
+    girth_waist: req.body.girthwaist,
+    girth_hips: req.body.girthhips,
+    girth_thigh_l: req.body.girthlthigh,
+    girth_thigh_r: req.body.girthrthigh,
+    girth_calf_l: req.body.girthlcalf,
+    girth_calf_r: req.body.girthrcalf,
+    girth_bicep_l: req.body.girthlbicep,
+    girth_bicep_r: req.body.girthrbicep,
+    fat_lbs: req.body.fatlbs,
+    lean_mass: req.body.leanmass,
+    body_fat_pct: req.body.bodyfatpct,
+    measurements_id: req.body.id
+  };
+  var q = 'UPDATE measurements SET measure_date=${measure_date}, height_ft=${height_ft}, height_in=${height_in}, weight=${weight}, caliper_chest=${caliper_chest}, caliper_subscap=${caliper_subscap}, caliper_abd=${caliper_abd}, caliper_suprillac=${caliper_suprillac}, caliper_thigh=${caliper_thigh}, caliper_lowback=${caliper_lowback}, caliper_bicep=${caliper_bicep}, caliper_calf=${caliper_calf}, caliper_tricep=${caliper_tricep}, girth_shoulders=${girth_shoulders}, girth_chest=${girth_chest}, girth_waist=${girth_waist}, girth_hips=${girth_hips}, girth_thigh_l=${girth_thigh_l}, girth_thigh_r=${girth_thigh_r}, girth_calf_l=${girth_calf_l}, girth_calf_r=${girth_calf_r}, girth_bicep_l=${girth_bicep_l}, girth_bicep_r=${girth_bicep_r}, fat_lbs=${fat_lbs}, lean_mass=${lean_mass}, body_fat_pct=${body_fat_pct} WHERE id = ${measurements_id}';
+    db.any(q, measurement_data)
+      .then(function (result) {
+        resp.redirect('/listmeasurements/' + req.body.trainee_id);
+      })
+      .catch(next);
 });
 
 // get method for signout
