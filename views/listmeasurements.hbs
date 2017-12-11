@@ -1,12 +1,4 @@
-<section class="section-list-measurements">
-  {{#if login_name}}
-    <form action="/signout" method="POST">
-      <div>
-        Hi {{login_name}}!
-        <button type="submit" value="submit">Sign out</button>
-      </div>
-    </form>
-  {{/if}}
+<section class="section-form">
   <form action="/addmeasurements" method="GET">
     <div class="row">
         <h2>Measurement History</h2>
