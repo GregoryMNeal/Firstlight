@@ -49,40 +49,48 @@ app.get('/login', function (req, resp, next) {
 app.post('/login', function (req, resp, next) {
   var username = req.body.username; // get user name from the form
   var password = req.body.password; // get password from the form
-  var q = 'SELECT * from trainee WHERE email = $1';
-  db.one(q, username) // sanitize SQL statement
-    .then(function (result) {
-      // validate password
-      var db_pwd = result.pword;
-      var pwd_parts = db_pwd.split('$');
-      var key = pbkdf2.pbkdf2Sync(
-        password,
-        pwd_parts[2],
-        parseInt(pwd_parts[1]),
-        256,
-        'sha256'
-      );
-      var hash = key.toString('hex');
-      if (hash === pwd_parts[3]) {
-        req.session.user = username; // set up a user session
-        req.session.login_name = result.name;
-        req.session.trainee_id = result.id;
-        resp.redirect('/listmeasurements/' + result.id);
-      } else {
+  if (username == "" || password == "") {
+    var context = {title: 'Sign in',
+      uname: username,
+      errmsg: 'User name and password are required.'
+    };
+    resp.render('login.hbs', context);
+  } else {
+    var q = 'SELECT * from trainee WHERE email = $1';
+    db.one(q, username) // sanitize SQL statement
+      .then(function (result) {
+        // validate password
+        var db_pwd = result.pword;
+        var pwd_parts = db_pwd.split('$');
+        var key = pbkdf2.pbkdf2Sync(
+          password,
+          pwd_parts[2],
+          parseInt(pwd_parts[1]),
+          256,
+          'sha256'
+        );
+        var hash = key.toString('hex');
+        if (hash === pwd_parts[3]) {
+          req.session.user = username; // set up a user session
+          req.session.login_name = result.name;
+          req.session.trainee_id = result.id;
+          resp.redirect('/listmeasurements/' + result.id);
+        } else {
+          var context = {title: 'Sign in',
+            uname: username,
+            errmsg: 'Incorrect password.'
+          };
+          resp.render('login.hbs', context);
+        }
+      })
+      .catch(function (error) {
         var context = {title: 'Sign in',
           uname: username,
-          errmsg: 'Incorrect password.'
+          errmsg: 'Incorrect login.'
         };
         resp.render('login.hbs', context);
-      }
-    })
-    .catch(function (error) {
-      var context = {title: 'Sign in',
-        uname: username,
-        errmsg: 'Incorrect login.'
-      };
-      resp.render('login.hbs', context);
-    });
+      });
+  }
 });
 
 // get method for account creation form
