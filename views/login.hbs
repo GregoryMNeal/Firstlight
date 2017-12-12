@@ -11,12 +11,12 @@
     <br>
     <br>
     <input type="password" name="password" id="password" placeholder="Enter Password" required><br><br>
-    <input class="btn btn-login" type="submit" value="Log in">
+    <div class="row">
+      <input class="btn btn-login" type="submit" value="Log in">
+      <input class="btn btn-login" type="submit" formaction="/create_acct" value="Create Account">
+    </div>
     <br>
     <br>
-  </form>
-  <form action="/create_acct" method="GET">
-    <input class="btn btn-full" type="submit" value="Create Account">
   </form>
   {{#if errmsg}}
     <br>

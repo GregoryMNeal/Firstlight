@@ -567,9 +567,11 @@ footer p {
 .btn-login:visited {
     width: 160px;
     margin-right: 15px;
+    color: #fff;
     background-color: #0d62ff;
     border: 1px solid #0d62ff;
-    color: #fff;
+    -webkit-transition: background-color 0.2s, color 0.2s, border 0.2s;
+    transition: background-color 0.2s, color 0.2s, border 0.2s;
 }
 
 .btn-login:hover,
@@ -592,6 +594,8 @@ footer p {
 .btn-create_acct:visited,
 input[type=submit] {
     width: 160px;
+    margin-top: 6px;
+    margin-bottom: 6px;
     margin-right: 15px;
     background-color: #0d62ff;
     border: 1px solid #0d62ff;
@@ -602,5 +606,7 @@ input[type=submit] {
 .btn-create_acct:active,
 input[type=submit] {
     width: 160px;
+    margin-top: 6px;
+    margin-bottom: 6px;
     background-color: #0c1fe8;
 }

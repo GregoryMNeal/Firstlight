@@ -15,7 +15,7 @@
 
     .row { padding: 0 2%; }
 
-    .app-screen { width: 50%; }
+    .app-screen { width: 45%; }
 
     .btn-app:link,
     .btn-app:visited { float: left; }
@@ -36,7 +36,7 @@
     .works-steps { margin-bottom: 40px; }
     .works-step:last-of-type { margin-bottom: 60px; }
 
-    .app-screen { width: 60%; }
+    .app-screen { width: 50%; }
 
     .icon-small {
         width: 17px;
@@ -61,6 +61,7 @@
 
     row,
     .hero-text-box { padding: 0 4%;}
+
     .col {
         width: 100%;
         margin: 0 0 4% 0;
