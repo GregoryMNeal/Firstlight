@@ -17,6 +17,8 @@ app.set('view engine', 'hbs'); // use handlebars for template rendering
 app.use(express.static('public')); // Setup express to serve the files in the public folder
 app.use(body_parser.urlencoded({extended: false}));
 
+var PORT = process.env.PORT || 8000;
+
 // saves a session
 app.use(session({
   secret: process.env.SECRET_KEY || 'dev',
@@ -273,6 +275,6 @@ app.post('/signout', function (req, resp, next) {
 });
 
 // Listen for requests
-app.listen(8000, function() {
+app.listen(PORT, function() {
   console.log('* Listening on port 8000 *')
 });
