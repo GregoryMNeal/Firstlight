@@ -17,6 +17,8 @@ app.set('view engine', 'hbs'); // use handlebars for template rendering
 app.use(express.static('public')); // Setup express to serve the files in the public folder
 app.use(body_parser.urlencoded({extended: false}));
 
+DATABASE_URL = process.env.DATABASE_URL || 'postgres://postgres:postgres@localhost:5432/firstlight'
+
 var PORT = process.env.PORT || 8000;
 
 // saves a session
