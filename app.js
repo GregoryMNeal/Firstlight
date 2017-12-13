@@ -7,7 +7,7 @@ var session = require('express-session'); // used for user login
 var pgp = require('pg-promise')({
   // initialization options
 }); // used for accessing the database
-var db = pgp({database: 'firstlight'}); // also used for accessing the database
+// var db = pgp({database: 'firstlight'}); // also used for accessing the database
 var body_parser = require('body-parser'); // used to retrieve input from HTML forms
 var pbkdf2 = require('pbkdf2'); // used to encrypt password
 var crypto = require('crypto'); // used to encrypt password
@@ -18,6 +18,8 @@ app.use(express.static('public')); // Setup express to serve the files in the pu
 app.use(body_parser.urlencoded({extended: false}));
 
 DATABASE_URL = process.env.DATABASE_URL || 'postgres://postgres:postgres@localhost:5432/firstlight'
+
+var db = pgp(DATABASE_URL);
 
 var PORT = process.env.PORT || 8000;
 
