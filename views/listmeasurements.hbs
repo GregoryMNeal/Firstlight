@@ -3,15 +3,15 @@
     <div class="row">
         <h2>Measurement History</h2>
     </div>
-    <input type="hidden" name="id" value={{results.[0].trainee_id}}>
-    <div class="row">
-      <div class="col span-1-of-6">
-          <label for="name"><strong>Name</strong></label>
-      </div>
-      <div class="col span-1-of-6">
+    <input type="hidden" name="id" id="id" value={{results.[0].trainee_id}}>
+      <div class="row">
+        <div class="col span-1-of-6">
+          <label for="name"><strong>Name:</strong></label>
+        </div>
+        <div class="col span-1-of-6">
           <strong>{{results.[0].name}}</strong>
+        </div>
       </div>
-    </div>
     <br>
     <br>
     {{#each results}}
@@ -20,7 +20,7 @@
     <br>
     <br>
     <div class="row">
-        <input class="btn btn-full" type="submit" value="Add Measurements">
+        <a class="btn btn-full" href="/addmeasurements/{{traineeid}}">Add Measurements</a>
     </div>
     <br>
   </form>

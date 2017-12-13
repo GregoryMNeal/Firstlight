@@ -8,7 +8,7 @@
           <input type="hidden" name="trainee_id" value="{{results.[0].trainee_id}}">
           <div class="row">
             <div class="col span-1-of-6">
-                <label for="name"><strong>Name</strong></label>
+                <label for="name"><strong>Name:</strong></label>
             </div>
             <div class="col span-1-of-6">
                 <strong>{{results.[0].name}}</strong>
@@ -22,25 +22,19 @@
               <div class="col span-1-of-6">
                   <input type="date" name="date" id="date" value="{{results.[0].measure_date}}" required>
               </div>
-              <div class="col span-1-of-6">
-                  <label for="age">Age</label>
-              </div>
-              <div class="col span-1-of-6">
-                  <input type="number" min="1" step="1" name="age" id="age">
-              </div>
           </div>
           <div class="row">
               <div class="col span-1-of-6">
                   <label for="name">Height</label>
               </div>
               <div class="col span-1-of-6">
-                  <input type="number" min="0" max="8" step="1" name="feet" id="feet" value="{{results.[0].height_ft}}">
+                  <input type="number" min="0" max="8" step="1" name="feet" id="feet" value="{{results.[0].height_ft}}" required>
               </div>
               <div class="col span-1-of-6">
                   <label for="date">Ft.</label>
               </div>
               <div class="col span-1-of-6">
-                  <input type="number" min="0" max="12" step="1" name="inches" id="inches" value="{{results.[0].height_in}}">
+                  <input type="number" min="0" max="12" step="1" name="inches" id="inches" value="{{results.[0].height_in}}" required>
               </div>
               <div class="col span-1-of-6">
                   <label for="age">in.</label>
@@ -55,19 +49,7 @@
                   <label for="currweight">Current Weight</label>
               </div>
               <div class="col span-1-of-6">
-                  <input type="number" min="0" step=".1" name="currweight" id="currweight" value="{{results.[0].weight}}">
-              </div>
-              <div class="col span-1-of-6">
-                  <label for="date">Goal Weight</label>
-              </div>
-              <div class="col span-1-of-6">
-                  <input type="number" min="0" step=".1" name="goalweight" id="goalweight">
-              </div>
-              <div class="col span-1-of-6">
-                  <label for="age">Difference</label>
-              </div>
-              <div class="col span-1-of-6">
-                  <input type="number" min="0" step=".1" name="weightdiff" id="weightdiff">
+                  <input type="number" min="0" step=".1" name="currweight" id="currweight" value="{{results.[0].weight}}" required>
               </div>
           </div>
           <br>
@@ -80,19 +62,19 @@
                   <label for="calchest">Chest</label>
               </div>
               <div class="col span-1-of-6">
-                  <input type="number" min="0" step="1" name="calchest" id="calchest" value="{{results.[0].caliper_chest}}">
+                  <input type="number" min="0" step="1" name="calchest" id="calchest" value="{{results.[0].caliper_chest}}" required>
               </div>
               <div class="col span-1-of-6">
                   <label for="calsuprillac">Suprillac</label>
               </div>
               <div class="col span-1-of-6">
-                  <input type="number" min="0" step="1" name="calsuprillac" id="calsuprillac" value="{{results.[0].caliper_suprillac}}">
+                  <input type="number" min="0" step="1" name="calsuprillac" id="calsuprillac" value="{{results.[0].caliper_suprillac}}" required>
               </div>
               <div class="col span-1-of-6">
                   <label for="calbicep">Bicep</label>
               </div>
               <div class="col span-1-of-6">
-                  <input type="number" min="0" step="1" name="calbicep" id="calbicep" value="{{results.[0].caliper_bicep}}">
+                  <input type="number" min="0" step="1" name="calbicep" id="calbicep" value="{{results.[0].caliper_bicep}}" required>
               </div>
           </div>
           <div class="row">
@@ -100,19 +82,19 @@
                   <label for="calsubscap">Subscap</label>
               </div>
               <div class="col span-1-of-6">
-                  <input type="number" min="0" step="1" name="calsubscap" id="calsubscap" value="{{results.[0].caliper_subscap}}">
+                  <input type="number" min="0" step="1" name="calsubscap" id="calsubscap" value="{{results.[0].caliper_subscap}}" required>
               </div>
               <div class="col span-1-of-6">
                   <label for="calthigh">Thigh</label>
               </div>
               <div class="col span-1-of-6">
-                  <input type="number" min="0" step="1" name="calthigh" id="calthigh" value="{{results.[0].caliper_thigh}}">
+                  <input type="number" min="0" step="1" name="calthigh" id="calthigh" value="{{results.[0].caliper_thigh}}" required>
               </div>
               <div class="col span-1-of-6">
                   <label for="calcalf">Calf</label>
               </div>
               <div class="col span-1-of-6">
-                  <input type="number" min="0" step="1" name="calcalf" id="calcalf" value="{{results.[0].caliper_calf}}">
+                  <input type="number" min="0" step="1" name="calcalf" id="calcalf" value="{{results.[0].caliper_calf}}" required>
               </div>
           </div>
           <div class="row">
@@ -120,19 +102,19 @@
                   <label for="calabdomen">Abdomen</label>
               </div>
               <div class="col span-1-of-6">
-                  <input type="number" min="0" step="1" name="calabdomen" id="calabdomen" value="{{results.[0].caliper_abd}}">
+                  <input type="number" min="0" step="1" name="calabdomen" id="calabdomen" value="{{results.[0].caliper_abd}}" required>
               </div>
               <div class="col span-1-of-6">
                   <label for="callowerback">Lower Back</label>
               </div>
               <div class="col span-1-of-6">
-                  <input type="number" min="0" step="1" name="callowerback" id="callowerback" value="{{results.[0].caliper_lowback}}">
+                  <input type="number" min="0" step="1" name="callowerback" id="callowerback" value="{{results.[0].caliper_lowback}}" required>
               </div>
               <div class="col span-1-of-6">
                   <label for="caltricep">Tricep</label>
               </div>
               <div class="col span-1-of-6">
-                  <input type="number" min="0" step="1" name="caltricep" id="caltricep" value="{{results.[0].caliper_tricep}}">
+                  <input type="number" min="0" step="1" name="caltricep" id="caltricep" value="{{results.[0].caliper_tricep}}" required>
               </div>
           </div>
           <br>
@@ -145,13 +127,13 @@
                   <label for="girthshoulders">Shoulders</label>
               </div>
               <div class="col span-1-of-6">
-                  <input type="number" min="0" name="girthshoulders" id="girthshoulders" value="{{results.[0].girth_shoulders}}">
+                  <input type="number" min="0" name="girthshoulders" id="girthshoulders" value="{{results.[0].girth_shoulders}}" required>
               </div>
               <div class="col span-1-of-6">
                   <label for="girthchest">Chest</label>
               </div>
               <div class="col span-1-of-6">
-                  <input type="number" min="0" name="girthchest" id="girthchest" value="{{results.[0].girth_chest}}">
+                  <input type="number" min="0" name="girthchest" id="girthchest" value="{{results.[0].girth_chest}}" required>
               </div>
           </div>
           <div class="row">
@@ -159,13 +141,13 @@
                   <label for="girthwaist">Waist</label>
               </div>
               <div class="col span-1-of-6">
-                  <input type="number" min="0" name="girthwaist" id="girthwaist" value="{{results.[0].girth_waist}}">
+                  <input type="number" min="0" name="girthwaist" id="girthwaist" value="{{results.[0].girth_waist}}" required>
               </div>
               <div class="col span-1-of-6">
                   <label for="girthhips">Hips</label>
               </div>
               <div class="col span-1-of-6">
-                  <input type="number" min="0" name="girthhips" id="girthhips" value="{{results.[0].girth_hips}}">
+                  <input type="number" min="0" name="girthhips" id="girthhips" value="{{results.[0].girth_hips}}" required>
               </div>
           </div>
           <div class="row">
@@ -173,13 +155,13 @@
                   <label for="girthlbicep">Left Bicep</label>
               </div>
               <div class="col span-1-of-6">
-                  <input type="number" min="0" name="girthlbicep" id="girthlbicep" value="{{results.[0].girth_bicep_l}}">
+                  <input type="number" min="0" name="girthlbicep" id="girthlbicep" value="{{results.[0].girth_bicep_l}}" required>
               </div>
               <div class="col span-1-of-6">
                   <label for="girthrbicep">Right Bicep</label>
               </div>
               <div class="col span-1-of-6">
-                  <input type="number" min="0" name="girthrbicep" id="girthrbicep" value="{{results.[0].girth_bicep_r}}">
+                  <input type="number" min="0" name="girthrbicep" id="girthrbicep" value="{{results.[0].girth_bicep_r}}" required>
               </div>
           </div>
           <div class="row">
@@ -187,13 +169,13 @@
                   <label for="girthlthigh">Left Thigh</label>
               </div>
               <div class="col span-1-of-6">
-                  <input type="number" min="0" name="girthlthigh" id="girthlthigh" value="{{results.[0].girth_thigh_l}}">
+                  <input type="number" min="0" name="girthlthigh" id="girthlthigh" value="{{results.[0].girth_thigh_l}}" required>
               </div>
               <div class="col span-1-of-6">
                   <label for="girthrthigh">Right Thigh</label>
               </div>
               <div class="col span-1-of-6">
-                  <input type="number" min="0" name="girthrthigh" id="girthrthigh" value="{{results.[0].girth_thigh_r}}">
+                  <input type="number" min="0" name="girthrthigh" id="girthrthigh" value="{{results.[0].girth_thigh_r}}" required>
               </div>
           </div>
           <div class="row">
@@ -201,13 +183,13 @@
                   <label for="girthlcalf">Left Calf</label>
               </div>
               <div class="col span-1-of-6">
-                  <input type="number" min="0" name="girthlcalf" id="girthlcalf" value="{{results.[0].girth_calf_l}}">
+                  <input type="number" min="0" name="girthlcalf" id="girthlcalf" value="{{results.[0].girth_calf_l}}" required>
               </div>
               <div class="col span-1-of-6">
                   <label for="girthrcalf">Right Calf</label>
               </div>
               <div class="col span-1-of-6">
-                  <input type="number" min="0" name="girthrcalf" id="girthrcalf" value="{{results.[0].girth_calf_r}}">
+                  <input type="number" min="0" name="girthrcalf" id="girthrcalf" value="{{results.[0].girth_calf_r}}" required>
               </div>
           </div>
           <br>
@@ -220,19 +202,19 @@
                   <label for="bodyfatpct">Body Fat %</label>
               </div>
               <div class="col span-1-of-6">
-                  <input type="number" min="0" name="bodyfatpct" id="bodyfatpct" value="{{results.[0].body_fat_pct}}">
+                  <input type="number" min="0" name="bodyfatpct" id="bodyfatpct" value="{{results.[0].body_fat_pct}}" required>
               </div>
               <div class="col span-1-of-6">
                   <label for="fatlbs">Fat Lbs</label>
               </div>
               <div class="col span-1-of-6">
-                  <input type="number" min="0" name="fatlbs" id="fatlbs" value="{{results.[0].fat_lbs}}">
+                  <input type="number" min="0" name="fatlbs" id="fatlbs" value="{{results.[0].fat_lbs}}" required>
               </div>
               <div class="col span-1-of-6">
                   <label for="leanmass">Lean Mass</label>
               </div>
               <div class="col span-1-of-6">
-                  <input type="number" min="0" name="leanmass" id="leanmass" value="{{results.[0].lean_mass}}">
+                  <input type="number" min="0" name="leanmass" id="leanmass" value="{{results.[0].lean_mass}}" required>
               </div>
           </div>
           <br>

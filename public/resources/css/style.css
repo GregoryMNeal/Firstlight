@@ -610,3 +610,12 @@ input[type=submit] {
     margin-bottom: 6px;
     background-color: #0c1fe8;
 }
+
+/*----------------------------------------------------------------------------*/
+/* LIST MEASUREMENTS */
+/*----------------------------------------------------------------------------*/
+
+.section-form li {
+  list-style: none;
+  margin-left: 5%;
+}

@@ -145,14 +145,15 @@ app.post('/create_acct', function (req, resp, next) {
 
 // Display history for a trainee
 app.get('/listmeasurements/:id', function (req, resp, next) {
-  var id = req.params.id;
-   var q = 'SELECT trainee.id as id, trainee.name, measurements.* FROM trainee \
-   LEFT JOIN measurements ON trainee.id = measurements.trainee_id \
-   WHERE trainee.id = $1 ORDER BY measure_date DESC';
-  db.any(q, id)
+  var traineeid = req.params.id;
+  var q = 'SELECT trainee.id, trainee.name, measurements.* FROM trainee \
+  LEFT JOIN measurements ON trainee.id = measurements.trainee_id \
+  WHERE trainee.id = $1';
+  db.any(q, traineeid)
     .then(function (results) {
       resp.render('listmeasurements.hbs', {
         title: 'History',
+        traineeid: traineeid,
         results: results,
         login_name: req.session.login_name});
     })
@@ -160,8 +161,8 @@ app.get('/listmeasurements/:id', function (req, resp, next) {
 });
 
 // get method for adding measurements for a trainee
-app.get('/addmeasurements', function (req, resp, next) {
-  var id = req.query.id;
+app.get('/addmeasurements/:id', function (req, resp, next) {
+  var id = req.params.id;
   var q = 'SELECT trainee.id as id, trainee.name FROM trainee \
   LEFT JOIN measurements ON trainee.id = measurements.trainee_id \
   WHERE trainee.id = $1';
@@ -177,8 +178,9 @@ app.get('/addmeasurements', function (req, resp, next) {
 });
 
 // post method for adding measurements
-app.post('/addmeasurements', function (req, resp, next) {
+app.post('/addmeasurements/:id', function (req, resp, next) {
   // Get input from form
+  var traineeid = req.params.id;
   var measurement_data = {
     measure_date: req.body.date,
     height_ft: req.body.feet,
@@ -206,13 +208,13 @@ app.post('/addmeasurements', function (req, resp, next) {
     fat_lbs: req.body.fatlbs,
     lean_mass: req.body.leanmass,
     body_fat_pct: req.body.bodyfatpct,
-    trainee_id: req.body.id
+    trainee_id: traineeid
   };
   var q = 'INSERT INTO measurements \
     VALUES (default, ${measure_date}, ${height_ft}, ${height_in}, ${weight}, ${caliper_chest}, ${caliper_subscap}, ${caliper_abd}, ${caliper_suprillac}, ${caliper_thigh}, ${caliper_lowback}, ${caliper_bicep}, ${caliper_calf}, ${caliper_tricep}, ${girth_shoulders}, ${girth_chest}, ${girth_waist}, ${girth_hips}, ${girth_thigh_l}, ${girth_thigh_r}, ${girth_calf_l}, ${girth_calf_r}, ${girth_bicep_l}, ${girth_bicep_r}, ${fat_lbs}, ${lean_mass}, ${body_fat_pct}, ${trainee_id}) RETURNING id';
     db.one(q, measurement_data)
       .then(function (result) {
-        resp.redirect('/listmeasurements/' + req.body.id);
+        resp.redirect('/listmeasurements/' + traineeid);
       })
       .catch(next);
 });
